@@ -5,3 +5,4 @@ apt install apache2
 rm -rf /var/www/html/*
 cp sites/* /var/www/html/
 systemctl start apache2
+systemctl restart apache2
