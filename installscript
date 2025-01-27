@@ -1,13 +1,6 @@
 #!/bin/bash
 
-#apt update
-#apt install apache2
-
-
-#apache_config_file=$(cat /etc/apache2/sites-available/000-default.conf)
-
-
-#here=$(pwd)
-#new_apache_config_file=$(sed -i "s|/var/www/html|$here/sites|g" "/etc/apache2/sites-available/000-default.conf")
-#echo "$new_apache_config_file"
+apt update
+apt install apache2
 cp sites/index.html /var/www/html/
+systemctl start apache2
