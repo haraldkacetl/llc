@@ -2,5 +2,6 @@
 
 apt update
 apt install apache2
-cp sites/index.html /var/www/html/
+rm -rf /var/www/html/*
+cp sites/* /var/www/html/
 systemctl start apache2
