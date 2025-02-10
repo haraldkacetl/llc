@@ -19,6 +19,52 @@ input_command=$(echo "$INPUT" | sed -n 's/.*input_command=\([^&]*\).*/\1/p' | tr
 eval_difficulty=$(echo "$INPUT" | sed -n 's/.*eval_difficulty=\([^&]*\).*/\1/p' | tr '+' ' ')
 task_id=${task_id:-"unknown"}
 
+#gen Test env
+./gen_test_env.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 task_path=$(echo "task_infos/$task_id")
 content=""
 if [[ -f "$task_path" ]]; then 

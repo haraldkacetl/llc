@@ -46,7 +46,11 @@ eval_script_content=$(cat cgi_evaluate_command.sh)
 echo "$eval_script_content" > /usr/lib/cgi-bin/eval_command.sh
 chmod +x /usr/lib/cgi-bin/eval_command.sh
 chown www-data:www-data /usr/lib/cgi-bin/eval_command.sh
-
+#copy gen_test_env script
+test_script_content=$(echo cgi_generate_test_env.sh)
+echo "$test_script_content" > /usr/lib/cgi-bin/gen_test_env.sh
+chown www-data:www-data /usr/lib/cgi-bin/gen_test_env.sh
+chmod +x /usr/lib/cgi-bin/gen_test_env.sh
 
 # Copy task_infos
 mkdir -p /usr/lib/cgi-bin/task_infos
