@@ -27,8 +27,9 @@ content=""
 command_in_jail="chroot /tmp/cgi-jail"
 
 command_in_jail=$(echo "$command_in_jail $input_command")
-
-
+echo $command_in_jail
+echo $input_command
+echo $INPUT
 
 
 
