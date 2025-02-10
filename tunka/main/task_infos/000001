@@ -17,6 +17,32 @@
     "",
     "Viel Erfolg!"
   ],
+  "needed_env": {
+    "_files_": ["hallo.txt","test.txt","h11.tt","matz"],
+    "_folder_":["css", "Backup"]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   "right_commands": ["cp Hallo.txt Backup/", "cp Hallo.txt Backup/Hallo.txt"],
   "main_command": "cp",
   "best_command" : "cp Hallo.txt Backup/",
