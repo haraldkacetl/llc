@@ -1,22 +1,4 @@
 {
-  "task_infos": [
-    "Kopiere die Datei <Hallo.txt> in den Ordner <Backup>,",
-    "ohne den jetzigen Ordner zu verlassen:",
-    "",
-    "Ordnerstruktur:",
-    "",
-    "Jetziger_Ordner/",
-    "├── css/",
-    "└── Hallo.txt",
-    "",
-    "Ziel:",
-    "Jetziger_Ordner/",
-    "├── css/",
-    "└── Backup/",
-    "    └── Hallo.txt",
-    "",
-    "Viel Erfolg!"
-  ],
   "needed_env": {
     "_files_": ["hallo.txt","test.txt","h11.tt","matz"],
     "_folder_":["css", "Backup"]

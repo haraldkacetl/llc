@@ -8,8 +8,11 @@
 #
 #
 
-right_solutions=$(jq -r 'right_commands' $task_path)
+#right_solutions=$(jq -r 'right_commands' $task_path)
 mkdir -p /srv/cgi-jail/{bin,lib,lib64,usr,dev}
+cp -a test_archives/0001/* /srv/cgi-jail/
+
+
 cp /bin/bash /srv/cgi-jail/bin/
 cp /usr/bin/ls /srv/cgi-jail/bin/
 cp /usr/bin/whoami /srv/cgi-jail/bin/
