@@ -11,9 +11,8 @@
 right_solutions=$(jq -r 'right_commands' $task_path)
 mkdir -p /srv/cgi-jail/{bin,lib,lib64,usr,dev}
 cp /bin/bash /srv/cgi-jail/bin/
-cp /bin/ls /srv/cgi-jail/bin/
+cp /usr/bin/ls /srv/cgi-jail/bin/
 cp /usr/bin/whoami /srv/cgi-jail/bin/
-cp /bin/cd /srv/cgi-jail/bin/
 cp /bin/pwd /srv/cgi-jail/bin/
 cp /bin/cat /srv/cgi-jail/bin/
 cp /bin/echo /srv/cgi-jail/bin/
@@ -22,7 +21,7 @@ cp /bin/rm /srv/cgi-jail/bin/
 cp /bin/cp /srv/cgi-jail/bin/
 cp /bin/grep /srv/cgi-jail/bin/
 cp /bin/sed /srv/cgi-jail/bin/
-cp /bin/which /srv/cgi-jail/bin/dd /bin/ls | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
+cp /bin/which /srv/cgi-jail/bin/
 cp /bin/head /srv/cgi-jail/bin/
 cp /bin/tail /srv/cgi-jail/bin/
 cp /bin/less /srv/cgi-jail/bin/
@@ -38,7 +37,6 @@ cp /lib64/ld-linux-x86-64.so.2 /srv/cgi-jail/lib64/
 ldd /bin/ls | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
 ldd /bin/bash | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
 ldd /usr/bin/whoami | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
-ldd /bin/cd | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
 ldd /bin/pwd | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
 ldd /bin/cat | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
 ldd /bin/echo | awk '{print $3}' | grep '^/' | xargs -I {} sudo cp --parents {} /srv/cgi-jail/
