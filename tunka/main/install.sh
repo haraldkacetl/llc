@@ -30,14 +30,6 @@ IP_ADDRESS=$(hostname -I | awk '{print $1}')
 echo "Apache server installed and configured!"
 echo "Visit http://$IP_ADDRESS to access the website."
 
-mkdir -p /srv/cgi-jail/{bin,lib,lib64,usr,dev}
-chown ich:ich /srv/cgi-jail
-cp /bin/bash /srv/cgi-jail/bin/
-cp /bin/ls /srv/cgi-jail/bin/
-cp /usr/bin/whoami /srv/cgi-jail/bin/
-cp /lib/x86_64-linux-gnu/libtinfo.so.6 /srv/cgi-jail/lib/
-cp /lib/x86_64-linux-gnu/libc.so.6 /srv/cgi-jail/lib/
-cp /lib64/ld-linux-x86-64.so.2 /srv/cgi-jail/lib64/
 
 # Copy Stylesheets
 mkdir -p /var/www/html/css
