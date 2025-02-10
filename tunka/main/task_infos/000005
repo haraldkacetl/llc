@@ -1,0 +1,6 @@
+{
+    "task_infos": "Verschiebe die Datei <Hallo.txt> aus dem aktuellen Ordner in den Ordner <Backup>:\n\nOrdnerstruktur:\n\nJetziger_Ordner/\n├── css/\n└── Hallo.txt\n\nZiel:\nJetziger_Ordner/\n├── css/\n└── Backup/\n    └── Hallo.txt\n\nViel Erfolg!",
+    "right_commands": ["mv Hallo.txt Backup/", "mv Hallo.txt Backup/Hallo.txt"],
+    "main_command": "mv",
+    "min_command_length": 17
+}

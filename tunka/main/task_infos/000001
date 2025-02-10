@@ -1,0 +1,24 @@
+{
+  "task_infos": [
+    "Kopiere die Datei <Hallo.txt> in den Ordner <Backup>,",
+    "ohne den jetzigen Ordner zu verlassen:",
+    "",
+    "Ordnerstruktur:",
+    "",
+    "Jetziger_Ordner/",
+    "├── css/",
+    "└── Hallo.txt",
+    "",
+    "Ziel:",
+    "Jetziger_Ordner/",
+    "├── css/",
+    "└── Backup/",
+    "    └── Hallo.txt",
+    "",
+    "Viel Erfolg!"
+  ],
+  "right_commands": ["cp Hallo.txt Backup/", "cp Hallo.txt Backup/Hallo.txt"],
+  "main_command": "cp",
+  "best_command" : "cp Hallo.txt Backup/",
+  "min_command_length": 17
+}

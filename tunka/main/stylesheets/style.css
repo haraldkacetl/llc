@@ -1,0 +1,66 @@
+body{
+    height: 100%;
+    width: 100%;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    margin-top: 10%;
+}
+.frame_in_div{
+    background-color: rgb(125, 125, 125);
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+#difficulty{
+    width: 150px;
+}
+#radio_nightmare {
+    display: none; 
+    position: absolute;
+    background-color: rgb(125, 125, 125);
+    border: 1px solid #ccc;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10; 
+}
+
+#radio_nightmare label {
+    display: inline-block;
+    margin-right: 10px; 
+    cursor: pointer;
+}
+
+#radio_nightmare input[type="radio"] {
+    margin-right: 5px;
+}
+#btn_s_t{
+    color: black;
+}
+#btn_st {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#show_tasks_btn {
+    text-decoration: none;
+    color: white;
+}
+
+#task_infos_p{
+    text-align: left;
+}
+#center_it{
+    text-align: center;
+    width: 50%;
+}
+#show_tasks_btn{
+    color: black;
+}

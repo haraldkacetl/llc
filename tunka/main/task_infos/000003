@@ -1,0 +1,6 @@
+{
+    "task_infos": "Erstelle eine Kopie der Datei <Hallo.txt> mit dem Namen <Hallo_copy.txt>:\n\nOrdnerstruktur:\n\nJetziger_Ordner/\n├── css/\n└── Hallo.txt\n\nZiel:\nJetziger_Ordner/\n├── css/\n└── Hallo_copy.txt\n\nViel Erfolg!",
+    "right_commands": ["cp Hallo.txt Hallo_copy.txt"],
+    "main_command": "cp",
+    "min_command_length": 17
+}

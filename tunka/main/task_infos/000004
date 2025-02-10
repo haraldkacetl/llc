@@ -1,0 +1,6 @@
+{
+    "task_infos": "Benenne die Datei <Hallo.txt> in <Tschuess.txt> um:\n\nOrdnerstruktur:\n\nJetziger_Ordner/\n├── css/\n└── Hallo.txt\n\nZiel:\nJetziger_Ordner/\n├── css/\n└── Tschuess.txt\n\nViel Erfolg!",
+    "right_commands": ["mv Hallo.txt Tschuess.txt"],
+    "main_command": "mv",
+    "min_command_length": 17
+}
