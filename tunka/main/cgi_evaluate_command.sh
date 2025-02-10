@@ -67,6 +67,54 @@ task_id=${task_id:-"unknown"}
 
 task_path=$(echo "task_infos/$task_id")
 content=""
+
+./cgi_generate_test_env.sh
+
+command_in_jail="chroot /tmp/cgi-jail"
+
+command_in_jail=$(echo "$command_in_jail $input_command")
+echo $command_in_jail
+echo $input_command
+echo $INPUT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if [[ -f "$task_path" ]]; then 
     right_solutions=$(jq -r 'right_commands' $task_path)
     min_len_solution=$(jq -r '.min_command_length' $task_path)
