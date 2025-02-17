@@ -59,3 +59,5 @@ chmod +x /usr/lib/cgi-bin/gen_test_env.sh
 mkdir /home/www-data
 chown www-data:www-data /home/www-data
 usermod -d /home/www-data www-data  
+
+./cgi_generate_test_env.sh
