@@ -47,15 +47,15 @@ echo "$eval_script_content" > /usr/lib/cgi-bin/eval_command.sh
 chmod +x /usr/lib/cgi-bin/eval_command.sh
 chown www-data:www-data /usr/lib/cgi-bin/eval_command.sh
 #copy gen_test_env script
-test_script_content=$(echo cgi_generate_test_env.sh)
+test_script_content=$(cat cgi_generate_test_env.sh)
 echo "$test_script_content" > /usr/lib/cgi-bin/gen_test_env.sh
 chown www-data:www-data /usr/lib/cgi-bin/gen_test_env.sh
 chmod +x /usr/lib/cgi-bin/gen_test_env.sh
+#www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot
+#echo "www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot" | sudo tee -a /etc/sudoers
 
-# Copy task_infos
-mkdir -p /usr/lib/cgi-bin/task_infos
-cp task_infos/* /usr/lib/cgi-bin/task_infos
 
-# Add chroot Permission
-echo "www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot" | sudo tee -a /etc/sudoers
-
+#create home for www-data
+mkdir /home/www-data
+chown www-data:www-data /home/www-data
+usermod -d /home/www-data www-data  
