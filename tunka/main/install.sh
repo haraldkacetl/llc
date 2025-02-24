@@ -53,7 +53,50 @@ chown www-data:www-data /usr/lib/cgi-bin/gen_test_env.sh
 chmod +x /usr/lib/cgi-bin/gen_test_env.sh
 #www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot
 #echo "www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot" | sudo tee -a /etc/sudoers
+#cp /etc/locale.gen /etc/locale.conf /etc/default/locale /var/cgi-jail/etc/
+
+#./cgi_generate_test_env.sh
+echo "Installation complete, cgi-jail createt at: /var/cgi-jail"
 
 
-./cgi_generate_test_env.sh
-echo "Installation complete, cgi-jail createt at: /usr/lib/cgi-bin/cgi-jail"
+
+#rm -rf /var/cgi-jail/
+
+
+
+
+
+if [ ! -d '/var/cgi-jail/usr' ]; then
+    mkdir -p /var/cgi-jail/usr
+    ln -s /usr/ /var/cgi-jail/usr
+    echo "linked usr"
+fi
+if [ ! -d /var/cgi-jail/etc ]; then
+    #mkdir -p /var/cgi-jail/etc
+    ln -s /etc /var/cgi-jail/
+    echo "linked etc"
+fi
+if [ ! -d /var/cgi-jail/bin ]; then
+    #mkdir -p /var/cgi-jail/bin
+    ln -s /usr/bin /var/cgi-jail/
+    echo "linked bin"
+fi
+if [ ! -d /var/cgi-jail/lib ]; then
+    #mkdir -p /var/cgi-jail/lib
+    ln -s /usr/lib /var/cgi-jail/
+    echo "linked lib"
+fi
+if [ ! -d /var/cgi-jail/lib64 ]; then
+    #mkdir -p /var/cgi-jail/lib64
+    ln -s /usr/lib64 /var/cgi-jail/
+    echo "linked lib64"
+fi
+mkdir -p /var/cgi-jail/dev
+
+#if [ ! -d /var/cgi-jail/usr/bin ]; then
+#    ln -s /usr/bin /var/cgi-jail/bin
+#fi
+
+
+
+#find /usr/lib/ -mindepth 1 -not -path "/usr/lib/cgi-bin/*" -exec ln -s {} /var/cgi-jail/usr/lib/ \;
