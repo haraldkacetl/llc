@@ -15,10 +15,15 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
 else
     INPUT=""
 fi
+decode_url() {
+    echo -e "$(echo "$1" | sed 's/+/ /g; s/%\(..\)/\\x\1/g' | xargs -0 printf '%b')"
+}
+
+input_command=$(echo "$INPUT" | awk -F"&" '{for (i=1; i<=NF; i++) if ($i ~ /^input_command=/) print substr($i,15)}')
+input_command=$(decode_url "$input_command")
 
 # Extract task_id, input_command, and eval_difficulty using sed and URL-decoding
 task_id=$(echo "$INPUT" | sed -n 's/.*task_id=\([^&]*\).*/\1/p' | tr '+' ' ' | sed 's/%20/ /g')
-input_command=$(echo "$INPUT" | sed -n 's/.*input_command=\([^&]*\).*/\1/p' | tr '+' ' ' | sed 's/%20/ /g')
 eval_difficulty=$(echo "$INPUT" | sed -n 's/.*eval_difficulty=\([^&]*\).*/\1/p' | tr '+' ' ' | sed 's/%20/ /g')
 
 # Default task_id if not set

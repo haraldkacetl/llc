@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Linux Befehlsaufgaben</title>
+</head>
+<body>
+    <h1>Linux Befehlsaufgaben</h1>
+    <form id="task_selection">
+        <label for="task_difficulty">Aufgabenschwierigkeit:</label>
+        <select id="task_difficulty">
+            <option value="taskd_easy">Einfach</option>
+            <option value="taskd_mid">Mittel</option>
+            <option value="taskd_hard">Schwer</option>
+        </select>
+    </form>
+    <button id="btn_s_t" onclick="toggleRadioMenu()">
+        <a id="show_tasks_btn">Show Tasks</a>
+    </button>
+    
+    <div id="radio_nightmare">
+        <form id="tasks_rad" >
+            <input type="radio" id="000001" name="task_selec" value="000001" required>
+            <label for="000001">Task 1</label>
+
+            <input type="radio" id="000002" name="task_selec" value="000002">
+            <label for="000002">Task 2</label>  
+
+            <input type="radio" id="000003" name="task_selec" value="000003">
+            <label for="000003">Task 3</label>
+            
+            <input type="radio" id="000004" name="task_selec" value="000004">
+            <label for="000004">Task 4</label>
+            
+            <input type="radio" id="000005" name="task_selec" value="000005">
+            <label for="000005">Task 5</label>
+            
+            <input type="radio" id="000006" name="task_selec" value="000006">
+            <label for="000006">Task 6</label>
+            
+            <input type="radio" id="000007" name="task_selec" value="000007">
+            <label for="000007">Task 7</label>
+            
+            <input type="radio" id="000008" name="task_selec" value="000008">
+            <label for="000008">Task 8</label>
+            
+            <input type="radio" id="000009" name="task_selec" value="000009">
+            <label for="000009">Task 9</label>
+            
+            <input type="radio" id="00000a" name="task_selec" value="00000a">
+            <label for="00000a">Task 10</label>
+            
+            <input type="radio" id="00000b" name="task_selec" value="00000b">
+            <label for="00000b">Task 11</label>
+            
+            <input type="radio" id="00000c" name="task_selec" value="00000c">
+            <label for="00000c">Task 12</label>
+            
+            <input type="radio" id="00000d" name="task_selec" value="00000d">
+            <label for="00000d">Task 13</label>
+            
+            <input type="radio" id="00000e" name="task_selec" value="00000e">
+            <label for="00000e">Task 14</label>
+            
+            <input type="radio" id="00000f" name="task_selec" value="00000f">
+            <label for="00000f">Task 15</label>
+            
+            <input type="radio" id="000010" name="task_selec" value="000010">
+            <label for="000010">Task 16</label>
+            
+            <input type="radio" id="000011" name="task_selec" value="000011">
+            <label for="000011">Task 17</label>
+            
+            <input type="radio" id="000012" name="task_selec" value="000012">
+            <label for="000012">Task 18</label>
+            
+            <input type="radio" id="000013" name="task_selec" value="000013">
+            <label for="000013">Task 19</label>
+            
+            <input type="radio" id="000014" name="task_selec" value="000014">
+            <label for="000014">Task 20</label>
+            <input type="radio" id="000015" name="task_selec" value="000015">
+            <label for="000015">Task 21</label>
+            
+            <input type="radio" id="000016" name="task_selec" value="000016">
+            <label for="000016">Task 22</label>
+            
+            <input type="radio" id="000017" name="task_selec" value="000017">
+            <label for="000017">Task 23</label>
+            
+            <input type="radio" id="000018" name="task_selec" value="000018">
+            <label for="000018">Task 24</label>
+            
+            <input type="radio" id="000019" name="task_selec" value="000019">
+            <label for="000019">Task 25</label>
+            
+            <input type="radio" id="00001a" name="task_selec" value="00001a">
+            <label for="00001a">Task 26</label>
+            
+            <input type="radio" id="00001b" name="task_selec" value="00001b">
+            <label for="00001b">Task 27</label>
+            
+            <input type="radio" id="00001c" name="task_selec" value="00001c">
+            <label for="00001c">Task 28</label>
+            
+            <input type="radio" id="00001d" name="task_selec" value="00001d">
+            <label for="00001d">Task 29</label>
+            
+            <input type="radio" id="00001e" name="task_selec" value="00001e">
+            <label for="00001e">Task 30</label>
+            
+            <input type="radio" id="00001f" name="task_selec" value="00001f">
+            <label for="00001f">Task 31</label>
+            
+            <input type="radio" id="000020" name="task_selec" value="000020">
+            <label for="000020">Task 32</label>
+            
+            <input type="radio" id="000021" name="task_selec" value="000021">
+            <label for="000021">Task 33</label>
+            
+            <input type="radio" id="000022" name="task_selec" value="000022">
+            <label for="000022">Task 34</label>
+            
+            <input type="radio" id="000023" name="task_selec" value="000023">
+            <label for="000023">Task 35</label>
+            
+            <input type="radio" id="000024" name="task_selec" value="000024">
+            <label for="000024">Task 36</label>
+            
+            <input type="radio" id="000025" name="task_selec" value="000025">
+            <label for="000025">Task 37</label>
+            
+            <input type="radio" id="000026" name="task_selec" value="000026">
+            <label for="000026">Task 38</label>
+            
+            <input type="radio" id="000027" name="task_selec" value="000027">
+            <label for="000027">Task 39</label>
+            
+            <input type="radio" id="000028" name="task_selec" value="000028">
+            <label for="000028">Task 40</label>
+            
+            <input type="radio" id="000029" name="task_selec" value="000029">
+            <label for="000029">Task 41</label>
+            
+            <input type="radio" id="00002a" name="task_selec" value="00002a">
+            <label for="00002a">Task 42</label>
+            
+            <input type="radio" id="00002b" name="task_selec" value="00002b">
+            <label for="00002b">Task 43</label>
+            
+            <input type="radio" id="00002c" name="task_selec" value="00002c">
+            <label for="00002c">Task 44</label>
+            
+            <input type="radio" id="00002d" name="task_selec" value="00002d">
+            <label for="00002d">Task 45</label>
+            
+            <input type="radio" id="00002e" name="task_selec" value="00002e">
+            <label for="00002e">Task 46</label>
+            
+            <input type="radio" id="00002f" name="task_selec" value="00002f">
+            <label for="00002f">Task 47</label>
+            
+            <input type="radio" id="000030" name="task_selec" value="000030">
+            <label for="000030">Task 48</label>
+            
+            <input type="radio" id="000031" name="task_selec" value="000031">
+            <label for="000031">Task 49</label>
+            
+            <input type="radio" id="000032" name="task_selec" value="000032">
+            <label for="000032">Task 50</label>
+            
+            <input type="radio" id="000033" name="task_selec" value="000033">
+            <label for="000033">Task 51</label>
+            
+            <input type="radio" id="000034" name="task_selec" value="000034">
+            <label for="000034">Task 52</label>
+            
+            <input type="radio" id="000035" name="task_selec" value="000035">
+            <label for="000035">Task 53</label>
+            
+            <input type="radio" id="000036" name="task_selec" value="000036">
+            <label for="000036">Task 54</label>
+            
+            <input type="radio" id="000037" name="task_selec" value="000037">
+            <label for="000037">Task 55</label>
+            
+            <input type="radio" id="000038" name="task_selec" value="000038">
+            <label for="000038">Task 56</label>
+            
+            <input type="radio" id="000039" name="task_selec" value="000039">
+            <label for="000039">Task 57</label>
+            
+            <input type="radio" id="00003a" name="task_selec" value="00003a">
+            <label for="00003a">Task 58</label>
+            
+            <input type="radio" id="00003b" name="task_selec" value="00003b">
+            <label for="00003b">Task 59</label>
+            
+            <input type="radio" id="00003c" name="task_selec" value="00003c">
+            <label for="00003c">Task 60</label>
+            
+            <input type="radio" id="00003d" name="task_selec" value="00003d">
+            <label for="00003d">Task 61</label>
+            
+            <input type="radio" id="00003e" name="task_selec" value="00003e">
+            <label for="00003e">Task 62</label>
+            
+            <input type="radio" id="00003f" name="task_selec" value="00003f">
+            <label for="00003f">Task 63</label>
+            
+            <input type="radio" id="000040" name="task_selec" value="000040">
+            <label for="000040">Task 64</label>
+            
+            <input type="radio" id="000041" name="task_selec" value="000041">
+            <label for="000041">Task 65</label>
+            
+            <input type="radio" id="000042" name="task_selec" value="000042">
+            <label for="000042">Task 66</label>
+            
+            <input type="radio" id="000043" name="task_selec" value="000043">
+            <label for="000043">Task 67</label>
+            
+            <input type="radio" id="000044" name="task_selec" value="000044">
+            <label for="000044">Task 68</label>
+            
+            <input type="radio" id="000045" name="task_selec" value="000045">
+            <label for="000045">Task 69</label>
+            
+            <input type="radio" id="000046" name="task_selec" value="000046">
+            <label for="000046">Task 70</label>
+            
+            <input type="radio" id="000047" name="task_selec" value="000047">
+            <label for="000047">Task 71</label>
+            
+            <input type="radio" id="000048" name="task_selec" value="000048">
+            <label for="000048">Task 72</label>
+            
+            <input type="radio" id="000049" name="task_selec" value="000049">
+            <label for="000049">Task 73</label>
+            
+            <input type="radio" id="00004a" name="task_selec" value="00004a">
+            <label for="00004a">Task 74</label>
+            
+            <input type="radio" id="00004b" name="task_selec" value="00004b">
+            <label for="00004b">Task 75</label>
+            
+            <input type="radio" id="00004c" name="task_selec" value="00004c">
+            <label for="00004c">Task 76</label>
+            
+            <input type="radio" id="00004d" name="task_selec" value="00004d">
+            <label for="00004d">Task 77</label>
+            
+            <input type="radio" id="00004e" name="task_selec" value="00004e">
+            <label for="00004e">Task 78</label>
+            
+            <input type="radio" id="00004f" name="task_selec" value="00004f">
+            <label for="00004f">Task 79</label>
+            
+            <input type="radio" id="000050" name="task_selec" value="000050">
+            <label for="000050">Task 80</label>
+            
+            <input type="radio" id="000051" name="task_selec" value="000051">
+            <label for="000051">Task 81</label>
+            
+            <input type="radio" id="000052" name="task_selec" value="000052">
+            <label for="000052">Task 82</label>
+            
+            <input type="radio" id="000053" name="task_selec" value="000053">
+            <label for="000053">Task 83</label>
+            
+            <input type="radio" id="000054" name="task_selec" value="000054">
+            <label for="000054">Task 84</label>
+            
+            <input type="radio" id="000055" name="task_selec" value="000055">
+            <label for="000055">Task 85</label>
+            
+            <input type="radio" id="000056" name="task_selec" value="000056">
+            <label for="000056">Task 86</label>
+            
+            <input type="radio" id="000057" name="task_selec" value="000057">
+            <label for="000057">Task 87</label>
+            
+            <input type="radio" id="000058" name="task_selec" value="000058">
+            <label for="000058">Task 88</label>
+            
+            <input type="radio" id="000059" name="task_selec" value="000059">
+            <label for="000059">Task 89</label>
+            
+            <input type="radio" id="00005a" name="task_selec" value="00005a">
+            <label for="00005a">Task 90</label>
+            
+            <input type="radio" id="00005b" name="task_selec" value="00005b">
+            <label for="00005b">Task 91</label>
+            
+            <input type="radio" id="00005c" name="task_selec" value="00005c">
+            <label for="00005c">Task 92</label>
+            
+            <input type="radio" id="00005d" name="task_selec" value="00005d">
+            <label for="00005d">Task 93</label>
+            
+            <input type="radio" id="00005e" name="task_selec" value="00005e">
+            <label for="00005e">Task 94</label>
+            
+            <input type="radio" id="00005f" name="task_selec" value="00005f">
+            <label for="00005f">Task 95</label>
+            
+            <input type="radio" id="000060" name="task_selec" value="000060">
+            <label for="000060">Task 96</label>
+            
+            <input type="radio" id="000061" name="task_selec" value="000061">
+            <label for="000061">Task 97</label>
+            
+            <input type="radio" id="000062" name="task_selec" value="000062">
+            <label for="000062">Task 98</label>
+            
+            <input type="radio" id="000063" name="task_selec" value="000063">
+            <label for="000063">Task 99</label>
+            
+            <input type="radio" id="000064" name="task_selec" value="000064">
+            <label for="000064">Task 100</label>
+        </form>
+    </div>
+    <button id="btn_l_t" onclick="load_task_wid()">
+        <a id="load_task">Task Laden</a>
+    </button>
+    <a id="center_it">
+    <p id="task_infos_p" style="white-space: pre;"></p>
+    </a>
+
+    <form id="eval_command_form">
+        <label for="difficulty"></label>
+        <select id="difficulty" name="difficulty">
+            <option value="eval_easiest">--TMP--</option>
+            <option value="eval_easy">--TMP--</option>
+            <option value="eval_hard">--TMP--</option>
+            <option value="eval_niederle">--TMP--</option>
+        </select><br>
+        <label for="command">Gib den passenden Befehl ein:</label><br>
+        <input type="text" id="command" name="command">
+        <button type="submit">Überprüfen</button>
+    </form>
+
+
+<br><br><br><br><br><br><br>
+
+
+
+
+    <form id="commandForm">
+        <label for="difficulty">Wähle die Schwierigkeit aus</label>
+        <select id="difficulty" name="difficulty">
+            <option value="eval_easiest">Baby (Es wird nur auf den Hauptbefehl geschaut)</option>
+            <option value="eval_easy">Easy (Es wird auch auf Funktionalität geschaut)</option>
+            <option value="eval_hard">Schwer (---)</option>
+            <option value="eval_niederle">Psycho (Es wird geschaut so wenig Zeichen wie Möglich zu verwenden und kein abstand zuviel)</option>
+        </select><br>
+        <label for="task">Wähle eine Aufgabe:</label>
+        <select id="task" name="task">
+            <option value="rename_file">Datei umbenennen</option>
+            <option value="change_dir">In anderes Verzeichnis wechseln</option>
+            <option value="list_files">Dateien auflisten</option>
+        </select>
+        <br><br>
+
+        <label for="command">Gib den passenden Befehl ein:</label><br>
+        <input type="text" id="command" name="command">
+        <br><br>
+
+        <button type="submit">Überprüfen</button>
+    </form>
+
+    <h2>Ergebnis:</h2>
+    <div id="result"></div>
+
+    <script>
+        
+        function load_task_wid(){
+        console.log("loading task")
+        var ttmpval = "None"
+            const radios = document.getElementsByName("task_selec");
+
+
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+
+                ttmpval = radios[i].value
+
+            }
+        }
+        console.log(ttmpval)
+
+            let command = document.getElementById("command").value;
+
+            let formData = new URLSearchParams();
+            formData.append("task_id", ttmpval);
+
+            fetch("/cgi-bin/get_task_info_frid.sh", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData.toString()
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data)
+                document.getElementById("task_infos_p").innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById("task_infos_p").innerHTML = "<p style='color:red;'>Fehler bei der Anfrage!</p>";
+                console.error("Fehler:", error);
+            });
+        }
+
+        function toggleRadioMenu() {
+            var menu = document.getElementById("radio_nightmare");
+
+            if (menu.style.display === "none" || menu.style.display === "") {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "none";
+            }
+        }
+
+        var tmptv = 0
+        function shwtl(){
+            if(tmptv == 0){
+            document.getElementById("radio_nightmare").style.visibility = "visible";
+                tmptv = 1
+        }
+            else{
+                document.getElementById("radio_nightmare").style.visibility = "hidden";
+                tmptv = 0
+            }
+        
+    }
+document.getElementById("eval_command_form").addEventListener("submit" , function(event){
+    event.preventDefault();
+    var ttmpval = "None"
+            const radios = document.getElementsByName("task_selec");
+
+
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+
+                ttmpval = radios[i].value
+
+            }
+        }
+    let command = document.getElementById("command").value;
+    let task = ttmpval
+    let eval_difficulty = document.getElementById("difficulty").value;
+    let formData = new URLSearchParams();
+            formData.append("task_id", task);
+            formData.append("input_command", command);
+            formData.append("eval_difficulty", eval_difficulty);
+
+
+            fetch("/cgi-bin/eval_command.sh", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData.toString()
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById("result").innerHTML = "<p style='color:red;'>Fehler bei der Anfrage!</p>";
+                console.error("Fehler:", error);
+            });
+
+})
+
+        document.getElementById("commandForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let task = document.getElementById("task").value;
+            let command = document.getElementById("command").value;
+
+            let formData = new URLSearchParams();
+            formData.append("task", task);
+            formData.append("command", command);
+
+            fetch("/cgi-bin/process_input.sh", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData.toString()
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById("result").innerHTML = "<p style='color:red;'>Fehler bei der Anfrage!</p>";
+                console.error("Fehler:", error);
+            });
+        });
+    </script>
+</body>
+</html>

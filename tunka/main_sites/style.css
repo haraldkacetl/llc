@@ -1,0 +1,23 @@
+#linux_term_txt{
+    background-color: blue;
+}
+
+table{
+background-color: red;    
+height: 50%;
+width: 50%;
+}
+#autocomplete-list {
+    position: absolute;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+  }
+  .autocomplete-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  .autocomplete-item:hover {
+    background: #f0f0f0;
+  }
