@@ -60,9 +60,6 @@ echo "Installation complete, cgi-jail createt at: /var/cgi-jail"
 
 
 
-#rm -rf /var/cgi-jail/
-
-
 
 
 
