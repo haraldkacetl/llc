@@ -12,6 +12,7 @@
 mkdir -p /usr/lib/cgi-bin/cgi-jail/{bin,lib,lib64,usr,dev}
 cp -a test_archives/0001/* /usr/lib/cgi-bin/cgi-jail/
 
+cp cdn /usr/lib/cgi-bin/cgi-jail/bin/
 
 cp /bin/bash /usr/lib/cgi-bin/cgi-jail/bin/
 cp /usr/bin/ls /usr/lib/cgi-bin/cgi-jail/bin/

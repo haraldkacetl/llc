@@ -48,7 +48,7 @@ else
 fi
 
 # Define chroot jail command
-command_in_jail="sudo chroot /usr/lib/cgi-bin/cgi-jail/$cd_path"
+command_in_jail="sudo chroot /usr/lib/cgi-bin/cgi-jail/"
 
 # Debugging: Show command being executed
 echo "<h3>Debugging: Command to be executed in jail</h3>"
