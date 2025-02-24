@@ -55,7 +55,5 @@ chmod +x /usr/lib/cgi-bin/gen_test_env.sh
 #echo "www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot" | sudo tee -a /etc/sudoers
 
 
-#create home for www-data
-mkdir /home/www-data
-chown www-data:www-data /home/www-data
-usermod -d /home/www-data www-data  
+./cgi_generate_test_env.sh
+echo "Installation complete, cgi-jail createt at: /usr/lib/cgi-bin/cgi-jail"

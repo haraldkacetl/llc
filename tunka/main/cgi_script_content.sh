@@ -22,15 +22,6 @@ COMMAND=$(echo "$INPUT" | sed -n 's/.*command=\([^&]*\).*/\1/p' | tr '+' ' ')
 TASK=${TASK:-"unknown"}
 COMMAND=${COMMAND:-"unknown"}
 
-# Gesperrte Befehle (Blacklist)
-BLACKLIST=("rm" "shutdown" "reboot" "poweroff" "halt" "mkfs" "dd" "chmod" "chown" "wget" "curl" "nc" "netcat" "bash" "sh" "python" "perl" "php")
-
-for BLOCKED in "${BLACKLIST[@]}"; do
-    if [[ "$COMMAND" == *"$BLOCKED"* ]]; then
-        echo "<html><body><h1>CGI Response</h1><p style='color:red;'>⚠️ Dieser Befehl ist nicht erlaubt!</p><a href='/'>Zurück</a></body></html>"
-        exit 0
-    fi
-done
 
 # Erwartete Befehle für die Aufgaben
 declare -A TASKS
