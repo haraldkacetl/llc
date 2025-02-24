@@ -40,6 +40,7 @@ document.addEventListener("click", function(e) {
 });
 
 inputFeld.addEventListener("keydown", function(event) {
+
   if (event.key === "Tab") {
     event.preventDefault();
     if (gefilterteVorschläge.length === 0) return;
@@ -52,5 +53,28 @@ inputFeld.addEventListener("keydown", function(event) {
       item.classList.toggle("selected", index === tabIndex);
     });
   }
+  if (event.key === "Enter"){
+    tmp = inputFeld.value
+    console.log(tmp)
+    console.log("ENTER PRESSED; TODO SEND TO BASH")
+
+  }
 });
 
+function updateTable(newText) {
+    // Verschiebe die Zeileninhalte von unten nach oben
+    for (let i = 9; i > 1; i--) {
+        let current = document.getElementById(`txt_line0${i}`);
+        let previous = document.getElementById(`txt_line0${i - 1}`);
+        
+        if (current && previous) {
+            current.innerText = previous.innerText;
+        }
+    }
+
+    // Setze den neuen Text in die erste Zeile
+    let firstRow = document.getElementById("txt_line01");
+    if (firstRow) {
+        firstRow.innerText = newText;
+    }
+}
