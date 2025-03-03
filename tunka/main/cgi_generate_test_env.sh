@@ -14,7 +14,7 @@ cp -a test_archives/0001/* /var/cgi-jail/
 
 
 
-cp /bin/bash /var/cgi-jail/bin/
+cp /usr/bin/bash /var/cgi-jail/bin/
 cp /usr/bin/ls /var/cgi-jail/bin/
 cp /usr/bin/whoami /var/cgi-jail/bin/
 cp /bin/pwd /var/cgi-jail/bin/

@@ -58,14 +58,23 @@ chmod +x /usr/lib/cgi-bin/gen_test_env.sh
 #./cgi_generate_test_env.sh
 echo "Installation complete, cgi-jail createt at: /var/cgi-jail"
 
+./cgi_generate_test_env.sh
+
+#cp -p -a /bin /var/cgi-jail/
+#cp -p -a /usr /var/cgi-jail/
+#cp -p -a /lib /var/cgi-jail/
+#cp -p -a /lib64 /var/cgi-jail/
+#cp -p -a /etc /var/cgi-jail/
+#cp -p -a /dev /var/cgi-jail/
 
 
 
 
+: <<'EOF'
 
-if [ ! -d '/var/cgi-jail/usr' ]; then
-    mkdir -p /var/cgi-jail/usr
-    ln -s /usr/ /var/cgi-jail/usr
+
+if [ ! -d /var/cgi-jail/usr ]; then
+    ln -s /usr/ /var/cgi-jail/
     echo "linked usr"
 fi
 if [ ! -d /var/cgi-jail/etc ]; then
@@ -75,7 +84,7 @@ if [ ! -d /var/cgi-jail/etc ]; then
 fi
 if [ ! -d /var/cgi-jail/bin ]; then
     #mkdir -p /var/cgi-jail/bin
-    ln -s /usr/bin /var/cgi-jail/
+    ln -s /var/cgi-jail/usr/bin /var/cgi-jail/
     echo "linked bin"
 fi
 if [ ! -d /var/cgi-jail/lib ]; then
@@ -90,6 +99,8 @@ if [ ! -d /var/cgi-jail/lib64 ]; then
 fi
 mkdir -p /var/cgi-jail/dev
 
+EOF
+
 #if [ ! -d /var/cgi-jail/usr/bin ]; then
 #    ln -s /usr/bin /var/cgi-jail/bin
 #fi
@@ -97,3 +108,5 @@ mkdir -p /var/cgi-jail/dev
 
 
 #find /usr/lib/ -mindepth 1 -not -path "/usr/lib/cgi-bin/*" -exec ln -s {} /var/cgi-jail/usr/lib/ \;
+
+# Debugging: Show command being executed

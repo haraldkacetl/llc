@@ -47,8 +47,9 @@ else
     exit 1
 fi
 
+
 # Define chroot jail command
-command_in_jail="sudo chroot /var/cgi-jail/"
+command_in_jail="sudo chroot /var/cgi-jail $input_command"
 #command_in_jail=""
 # Debugging: Show command being executed
 echo "<h3>Debugging: Command to be executed in jail</h3>"
@@ -58,7 +59,7 @@ echo "$command_in_jail $input_command<br>"
 input_command_safe=$(echo "$input_command" | sed 's/[^a-zA-Z0-9_\-\/ ]//g')
 
 # Append the sanitized input command to the jail command
-command_in_jail="$command_in_jail $input_command_safe"
+command_in_jail="$command_in_jail"
 
 # Execute the command inside the jail and capture output
 echo "Executing command inside chroot jail: $command_in_jail<br>"
