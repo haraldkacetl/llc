@@ -9,16 +9,19 @@ exit
 fi
 
 # !!!Uncomment after testing!!!
-#apt-get update -y
-#apt-get upgrade -y
-#apt-get install -y apache2
-#apt install jq -y
-#a2enmod cgi
-#systemctl restart apache2
+apt-get update -y
+apt-get upgrade -y
+apt-get install -y apache2
+apt install jq -y
+a2enmod cgi
+systemctl restart apache2
+mkdir -p /usr/lib/cgi-bin
+chmod 755 /usr/lib/cgi-bin
 
-jpath="/jail-bin"
+jpath="/var/jail-bin"
 echo "set path to $jpath"
 mkdir -p $jpath/jail
+chown www-data:www-data $jpath/jail
 echo "created jail directory"
 mkdir -p $jpath/jail/bin
 echo "created jail/bin directory"
@@ -28,11 +31,11 @@ mkdir -p $jpath/jail/lib64
 echo "created jail/lib64 directory"
 
 echo "copying files to jail"
-#cp -r -p /bin/* $jpath/jail/bin/
+cp -r -p /bin/* $jpath/jail/bin/
 echo "copied /bin/ to jail/bin/"
-#cp -r -p /lib/* $jpath/jail/lib/
+cp -r -p /lib/* $jpath/jail/lib/
 echo "copied /lib/ to jail/lib/"
-#cp -r -p /lib64/* $jpath/jail/lib64/
+cp -r -p /lib64/* $jpath/jail/lib64/
 echo "copied /lib64/ to jail/lib64/"
 
 cgi_script_content=$(cat command_execution.sh)
@@ -52,3 +55,5 @@ echo "Visit http://$IP_ADDRESS to access the website."
 mkdir -p /var/www/html/css
 cp ./stylesheets/* /var/www/html/css/
 echo "copied stylesheets to /var/www/html/css/"
+systemctl restart apache2
+echo "www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot" | sudo tee -a /etc/sudoers
