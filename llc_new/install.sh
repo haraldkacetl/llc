@@ -33,3 +33,4 @@ cp -r -p /lib/* $jpath/jail/lib/
 echo "copied /lib/ to jail/lib/"
 cp -r -p /lib64/* $jpath/jail/lib64/
 echo "copied /lib64/ to jail/lib64/"
+
