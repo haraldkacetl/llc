@@ -10,7 +10,7 @@ fi
 
 # !!!Uncomment after testing!!!
 apt-get update -y
-apt-get upgrade -y
+#apt-get upgrade -y
 apt-get install -y apache2
 apt install jq -y
 a2enmod cgi
@@ -29,14 +29,22 @@ mkdir -p $jpath/jail/lib
 echo "created jail/lib directory"
 mkdir -p $jpath/jail/lib64
 echo "created jail/lib64 directory"
+mkdir -p $jpath/jail/usr
+echo "created jail/usr directory"
 
 echo "copying files to jail"
+echo "copying /bin/ to jail/bin/"
 cp -r -p /bin/* $jpath/jail/bin/
 echo "copied /bin/ to jail/bin/"
+echo "copying /lib/ to jail/lib/"
 cp -r -p /lib/* $jpath/jail/lib/
 echo "copied /lib/ to jail/lib/"
+echo "copying /lib64/ to jail/lib64/"
 cp -r -p /lib64/* $jpath/jail/lib64/
 echo "copied /lib64/ to jail/lib64/"
+echo "copying /usr/ to jail/usr/"
+cp -r -p /usr/* $jpath/jail/usr/
+echo "copied /usr/ to jail/usr/"
 
 cgi_script_content=$(cat command_execution.sh)
 echo "$cgi_script_content" > /usr/lib/cgi-bin/process_input.sh
