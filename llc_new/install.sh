@@ -9,9 +9,10 @@ exit
 fi
 
 # !!!Uncomment after testing!!!
-#apt-get update
+#apt-get update -y
+#apt-get upgrade -y
 #apt-get install -y apache2
-#apt install jq
+#apt install jq -y
 #a2enmod cgi
 #systemctl restart apache2
 
