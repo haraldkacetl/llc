@@ -36,10 +36,10 @@ cp -r -p /lib64/* $jpath/jail/lib64/
 echo "copied /lib64/ to jail/lib64/"
 
 cgi_script_content=$(cat cgi_script_content.sh)
-echo "$cgi_script_content" > /usr/lib/cgi-bin/process_input.sh
-chmod +x /usr/lib/cgi-bin/process_input.sh
-chown www-data:www-data /usr/lib/cgi-bin/process_input.sh
-echo "created /usr/lib/cgi-bin/process_input.sh"
+echo "$cgi_script_content" > $jpath/process_input.sh
+chmod +x $jpath/process_input.sh
+chown www-data:www-data $jpath/process_input.sh
+echo "created $jpath/process_input.sh"
 
 
 cp sites/* /var/www/html/
