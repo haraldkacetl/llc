@@ -20,3 +20,5 @@ input_command=$(decode_url "$input_command")
 
 command_in_jail="chroot $chroot_path /bin/bash -c \"$input_command\""
 output=$(eval "$command_in_jail 2>&1")
+
+

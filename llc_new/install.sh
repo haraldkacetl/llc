@@ -35,3 +35,20 @@ echo "copied /lib/ to jail/lib/"
 cp -r -p /lib64/* $jpath/jail/lib64/
 echo "copied /lib64/ to jail/lib64/"
 
+cgi_script_content=$(cat cgi_script_content.sh)
+echo "$cgi_script_content" > /usr/lib/cgi-bin/process_input.sh
+chmod +x /usr/lib/cgi-bin/process_input.sh
+chown www-data:www-data /usr/lib/cgi-bin/process_input.sh
+echo "created /usr/lib/cgi-bin/process_input.sh"
+
+
+cp sites/* /var/www/html/
+echo "copied site-files to /var/www/html/"
+systemctl restart apache2
+IP_ADDRESS=$(hostname -I | awk '{print $1}')
+echo "Apache server installed and configured!"
+echo "Visit http://$IP_ADDRESS to access the website."
+
+mkdir -p /var/www/html/css
+cp ./stylesheets/* /var/www/html/css/
+echo "copied stylesheets to /var/www/html/css/"
