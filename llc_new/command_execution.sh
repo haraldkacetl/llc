@@ -23,11 +23,7 @@ decode_url() {
 input_command=$(echo "$INPUT" | awk -F"&" '{for (i=1; i<=NF; i++) if ($i ~ /^input_command=/) print substr($i,15)}')
 input_command=$(decode_url "$input_command")
 
-# Sicherheit: Keine gefährlichen Befehle zulassen
-if [[ "$input_command" =~ ";"|"\&"|"|" ]]; then
-    echo "<p style='color:red;'>Ungültiger Befehl! Nur einfache Befehle erlaubt.</p>"
-    exit 1
-fi
+
 
 # Führe den Befehl in der Jail-Umgebung aus
 echo "Benutzer-ID: $(id)"
