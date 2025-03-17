@@ -82,7 +82,8 @@ input {
     border-bottom: black 1px solid;
    }
 #fancy_style_element{
-    color: green;
+    color: lightgreen;
+    font-weight: bold;
 }
 #varpath{
     color: blue;

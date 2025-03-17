@@ -23,10 +23,11 @@ if [[ "e$anwser" == "e" ]]; then
     anwser="n"
 fi
 anwser=$(echo "$anwser" | tr '[:upper:]' '[:lower:]')
+jpath="/var/jail-bin"
 if [[ "$answer" == "y" ]]; then
     echo "Creating directories and copying files..."
 
-    jpath="/var/jail-bin"
+    
     echo "set path to $jpath"
     mkdir -p $jpath/jail
     chown www-data:www-data $jpath/jail
@@ -60,6 +61,11 @@ if [[ "$answer" == "y" ]]; then
 else 
     echo "Skipping directory creation and file copying..."
 fi
+cp clear.sh $jpath/jail/bin/clear.sh
+chmod +x $jpath/jail/bin/clear.sh
+cp clear.sh $jpath/jail/usr/bin/clr.sh
+chmod +x $jpath/jail/usr/bin/clr.sh
+echo "copied clear.sh to $jpath/jail/bin/clear"
 
 cgi_script_content=$(cat command_execution.sh)
 echo "$cgi_script_content" > /usr/lib/cgi-bin/process_input.sh

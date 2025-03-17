@@ -1,6 +1,7 @@
 #!/bin/bash
 
 chroot_path="/var/jail-bin/jail"
+history_file="$chroot_path/command_history.txt"
 
 echo "Content-type: text/html; charset=UTF-8"
 echo ""
@@ -35,12 +36,28 @@ command_in_jail="cd \"$varpath\" && { $input_command; echo '<path>'; pwd; echo '
 
 output=$(sudo chroot "$chroot_path" /bin/bash -c "$command_in_jail" 2>&1)
 
+# Append the output to the history file
+echo "$output" >> "$history_file"
+#if [[ "s$input_command" != "sclear" ]]; then
+#    echo "" > "$chroot_path/command_history.txt"
+#fi
 # HTML-Ausgabe generieren
 echo "<!DOCTYPE html>"
 echo "<html><head>"
 echo "<meta charset='UTF-8'>"
-#echo "$varpath"
-#echo "$INPUT"
 echo "<meta charset='UTF-8'></head><body>"
+#echo $(cat "$history_file")
 echo "<pre>$output</pre>"
+
+# Display history from the file, simulating a terminal
+
+echo "<pre>"
+
+#if [ -f "$history_file" ]; then
+#    tail -n 20 "$history_file"  # Show last 20 lines (you can adjust this number)
+#else
+#    echo "No history available."
+#fi
+
+echo "</pre>"
 echo "</body></html>"
