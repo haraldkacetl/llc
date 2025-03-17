@@ -64,3 +64,8 @@ body{
 #show_tasks_btn{
     color: black;
 }
+.label-container {
+    display: flex;
+    gap: 5px; 
+    align-items: center;
+}

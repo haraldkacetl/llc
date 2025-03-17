@@ -8,17 +8,52 @@
 </head>
 <body>
     <h1>Linux Befehlseingabe</h1>
-    <form action="cgi-bin/process_input.sh" method="post" target="outputFrame" onsubmit="return submitForm();">
-        <label for="input_command">Geben Sie einen Linux-Befehl ein:</label>
-        <input type="text" id="input_command" name="input_command" required>
-        <button type="submit">Ausführen</button>
-    </form>
-    <iframe id="outputFrame" name="outputFrame" frameborder="0" width="100%" height="300px" onload="filterIframeContent();"></iframe>
     
+    <div class="label-container">
+        <label for="input_command">user@linux:</label>
+        <label id="varpath">/</label>
+    </div>
+
+    <input type="text" id="input_command" required>
+    <button onclick="submitCommand()">Ausführen</button>
+
+    <iframe id="outputFrame" frameborder="0" width="100%" height="300px"></iframe>
+
     <script>
-        function submitForm() {
-            document.getElementById('outputFrame').style.display = 'block';
-            return true; // Formular absenden
+        function submitCommand() {
+            const command = document.getElementById('input_command').value;
+            const varpath = document.getElementById('varpath').innerText;
+            console.log("Befehl:", command);
+            console.log("Pfad:", varpath);
+            if (!command.trim()) {
+                alert("Bitte einen Befehl eingeben!");
+                return;
+            }
+
+            // Anfrage mit fetch() senden
+            fetch("cgi-bin/process_input.sh", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({
+                    input_command: command,
+                    varpath: varpath
+                })
+            })
+            .then(response => response.text())
+            .then(html => {
+                // Antwort im iFrame anzeigen
+                const iframe = document.getElementById('outputFrame');
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(html);
+                iframeDoc.close();
+
+                // Pfad aus <path>...</path> extrahieren und Label aktualisieren
+                filterIframeContent();
+            })
+            .catch(error => console.error("Fehler:", error));
         }
 
         function filterIframeContent() {
@@ -27,18 +62,16 @@
 
             if (iframeDoc) {
                 let content = iframeDoc.body.innerHTML;
+                let pathRegex = /<path>(.*?)<\/path>/s;
+                let match = content.match(pathRegex);
 
-                // Regex für <path> bis </path>
-                let pathRegex = /<path>.*?<\\/path>/gs;
-                let matches = content.match(pathRegex);
-
-                if (matches) {
-                    let extractedData = matches.map(match => match.replace(/<\/?path>/g, '')).join("\n");
+                if (match) {
+                    let extractedPath = match[1].trim();
                     
-                    // Speichern oder Anzeigen der bereinigten Daten
-                    console.log("Gefilterte Pfadinformationen:", extractedData);
-
-                    // Optional: Den gefilterten Inhalt im iFrame ersetzen
+                    // Aktualisiere varpath im Label
+                    document.getElementById('varpath').innerText = extractedPath;
+                    
+                    // Entferne <path>...</path> aus der iFrame-Ausgabe
                     iframeDoc.body.innerHTML = content.replace(pathRegex, '');
                 }
             }
