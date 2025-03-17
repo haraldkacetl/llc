@@ -98,4 +98,13 @@ mkdir -p /var/www/html/css
 cp ./stylesheets/* /var/www/html/css/
 echo "copied stylesheets to /var/www/html/css/"
 systemctl restart apache2
-echo "www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot" | sudo tee -a /etc/sudoers
+
+addsudoline="www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot"
+
+
+if sudo grep -Fxq "$addsudoline" /etc/sudoers; then
+    echo "www-data already able to run chroot. No changes made."
+else
+    echo "$addsudoline" | sudo tee -a /etc/sudoers
+    echo "Added chroot to www-data."
+fi

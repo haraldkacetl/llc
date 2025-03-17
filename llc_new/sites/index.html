@@ -13,12 +13,35 @@
         <input type="text" id="input_command" name="input_command" required>
         <button type="submit">Ausführen</button>
     </form>
-    <iframe id="outputFrame" name="outputFrame" frameborder="0" width="100%" height="300px"></iframe>
+    <iframe id="outputFrame" name="outputFrame" frameborder="0" width="100%" height="300px" onload="filterIframeContent();"></iframe>
     
     <script>
         function submitForm() {
             document.getElementById('outputFrame').style.display = 'block';
-            return true; // Formular wird abgesendet
+            return true; // Formular absenden
+        }
+
+        function filterIframeContent() {
+            const iframe = document.getElementById('outputFrame');
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+            if (iframeDoc) {
+                let content = iframeDoc.body.innerHTML;
+
+                // Regex für <path> bis </path>
+                let pathRegex = /<path>.*?<\\/path>/gs;
+                let matches = content.match(pathRegex);
+
+                if (matches) {
+                    let extractedData = matches.map(match => match.replace(/<\/?path>/g, '')).join("\n");
+                    
+                    // Speichern oder Anzeigen der bereinigten Daten
+                    console.log("Gefilterte Pfadinformationen:", extractedData);
+
+                    // Optional: Den gefilterten Inhalt im iFrame ersetzen
+                    iframeDoc.body.innerHTML = content.replace(pathRegex, '');
+                }
+            }
         }
     </script>
 </body>
