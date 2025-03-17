@@ -79,6 +79,7 @@ h1{
 input {
     outline:none;
     width: 80%;
+    border-bottom: black 1px solid;
    }
 #fancy_style_element{
     color: green;
