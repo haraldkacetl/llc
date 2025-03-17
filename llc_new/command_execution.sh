@@ -26,7 +26,9 @@ input_command=$(decode_url "$input_command")
 
 
 # Führe den Befehl in der Jail-Umgebung aus
+
 echo "Benutzer-ID: $(id)"
+input_command=$(echo "$input_command && echo '<path>' && pwd && echo '</path>'")
 command_in_jail="sudo chroot $chroot_path /bin/bash -c \"$input_command\""
 echo "execution $command_in_jail"
 output=$(eval "$command_in_jail" 2>&1)

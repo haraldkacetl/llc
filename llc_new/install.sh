@@ -18,7 +18,10 @@ systemctl restart apache2
 mkdir -p /usr/lib/cgi-bin
 chmod 755 /usr/lib/cgi-bin
 
-read -p "Do you want to create and copy directories/files? (Required on first install)(y/n): " answer
+read -p "Do you want to create and copy directories/files? (Required on first install)(y/N): " answer
+if [[ "e$anwser" == "e" ]]; then
+    anwser="n"
+fi
 anwser=$(echo "$anwser" | tr '[:upper:]' '[:lower:]')
 if [[ "$answer" == "y" ]]; then
     echo "Creating directories and copying files..."

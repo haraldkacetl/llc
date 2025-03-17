@@ -8,11 +8,18 @@
 </head>
 <body>
     <h1>Linux Befehlseingabe</h1>
-    <form action="cgi-bin/process_input.sh" method="post">
+    <form action="cgi-bin/process_input.sh" method="post" target="outputFrame" onsubmit="return submitForm();">
         <label for="input_command">Geben Sie einen Linux-Befehl ein:</label>
         <input type="text" id="input_command" name="input_command" required>
         <button type="submit">Ausführen</button>
     </form>
     <iframe id="outputFrame" name="outputFrame" frameborder="0" width="100%" height="300px"></iframe>
+    
+    <script>
+        function submitForm() {
+            document.getElementById('outputFrame').style.display = 'block';
+            return true; // Formular wird abgesendet
+        }
+    </script>
 </body>
 </html>
