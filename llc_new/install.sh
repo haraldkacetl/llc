@@ -9,7 +9,7 @@ exit
 fi
 
 # !!!Uncomment after testing!!!
-apt-get update -y
+#apt-get update -y
 #apt-get upgrade -y
 apt-get install -y apache2
 apt install jq -y
@@ -19,8 +19,8 @@ mkdir -p /usr/lib/cgi-bin
 chmod 755 /usr/lib/cgi-bin
 
 read -p "Do you want to create and copy directories/files? (Required on first install)(y/n): " answer
-
-if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+anwser=$(echo "$anwser" | tr '[:upper:]' '[:lower:]')
+if [[ "$answer" == "y" ]]; then
     echo "Creating directories and copying files..."
 
     jpath="/var/jail-bin"
