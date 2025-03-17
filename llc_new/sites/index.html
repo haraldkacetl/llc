@@ -3,34 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mainstyle.css">
     <title>Linux Befehlsaufgaben</title>
 </head>
 <body>
-    <h1>Linux Befehlseingabe</h1>
-    
-    <div class="label-container">
-        <label for="input_command">user@linux:</label>
-        <label id="varpath">/</label>
-    </div>
-
-    <input type="text" id="input_command" required>
-    <button onclick="submitCommand()">Ausführen</button>
-
+    <h1 id="titlepage">Linux Befehlseingabe</h1>
     <iframe id="outputFrame" frameborder="0" width="100%" height="300px"></iframe>
+    <div class="label-container">
+        <label for="input_command" id="fancy_style_element">user@linux:</label>
+        <label id="varpath">/</label>
+    
+        <input type="text" id="input_command" required>
+    </div>
+    <button onclick="submitCommand()" style="visibility: hidden;">Ausführen</button>
 
     <script>
+        // Get reference to the iframe
+        const iframe = document.getElementById('outputFrame');
+
+        // Add a click event listener to the iframe to focus on the input field inside the iframe
+        iframe.addEventListener('click', function() {
+            // Try to access the iframe's content document
+            const iframeDocument = iframe.contentWindow.document;
+            
+            // Look for the input element inside the iframe
+            const inputField = iframeDocument.querySelector('input');
+            
+            // Focus the input field if it's found
+            if (inputField) {
+                inputField.focus();
+            }
+        });
+
+        // Get reference to the main input field outside the iframe
+        const inputField = document.querySelector('input');
+
+        // Add an event listener for the "keydown" event to trigger command submission on Enter key
+        inputField.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                // Submit the command when the Enter key is pressed
+                submitCommand();
+            }
+        });
+
+        // Function to submit the command
         function submitCommand() {
             const command = document.getElementById('input_command').value;
             const varpath = document.getElementById('varpath').innerText;
             console.log("Befehl:", command);
             console.log("Pfad:", varpath);
+
+            // Check if the command input is empty
             if (!command.trim()) {
                 alert("Bitte einen Befehl eingeben!");
                 return;
             }
 
-            // Anfrage mit fetch() senden
+            // Send the command to the server via fetch()
             fetch("cgi-bin/process_input.sh", {
                 method: "POST",
                 headers: {
@@ -43,19 +72,20 @@
             })
             .then(response => response.text())
             .then(html => {
-                // Antwort im iFrame anzeigen
+                // Display the server's response inside the iframe
                 const iframe = document.getElementById('outputFrame');
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
                 iframeDoc.open();
                 iframeDoc.write(html);
                 iframeDoc.close();
 
-                // Pfad aus <path>...</path> extrahieren und Label aktualisieren
+                // Extract and update the path in the label
                 filterIframeContent();
             })
             .catch(error => console.error("Fehler:", error));
         }
 
+        // Function to extract and update the path from the iframe content
         function filterIframeContent() {
             const iframe = document.getElementById('outputFrame');
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -68,10 +98,10 @@
                 if (match) {
                     let extractedPath = match[1].trim();
                     
-                    // Aktualisiere varpath im Label
+                    // Update the path in the label
                     document.getElementById('varpath').innerText = extractedPath;
                     
-                    // Entferne <path>...</path> aus der iFrame-Ausgabe
+                    // Remove the <path>...</path> from the iframe's content
                     iframeDoc.body.innerHTML = content.replace(pathRegex, '');
                 }
             }

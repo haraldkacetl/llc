@@ -75,6 +75,8 @@ IP_ADDRESS=$(hostname -I | awk '{print $1}')
 echo "Apache server installed and configured!"
 echo "Visit http://$IP_ADDRESS to access the website."
 
+rm /var/www/html/css/*
+echo "removed old stylesheets"
 mkdir -p /var/www/html/css
 cp ./stylesheets/* /var/www/html/css/
 echo "copied stylesheets to /var/www/html/css/"
