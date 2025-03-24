@@ -55,7 +55,7 @@
             const existingContent = iframeDoc.body.innerHTML;
 
                 // Append new content
-            iframeDoc.body.innerHTML = existingContent + "user@linux:" + varpath + "$"+ command;
+            iframeDoc.body.innerHTML = existingContent + "user@linux:" + varpath + "$ "+ command;
             fetch("cgi-bin/process_input.sh", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
