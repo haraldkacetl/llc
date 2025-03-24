@@ -82,7 +82,7 @@ input {
     border-bottom: black 1px solid;
    }
 #fancy_style_element{
-    color: lightgreen;
+    color: green;
     font-weight: bold;
 }
 #varpath{
@@ -90,4 +90,7 @@ input {
 }
 .label-container{
     background-color: rgb(110, 110, 110)  ;
+}
+iframe{
+    background-color: rgb(255, 0, 0);
 }

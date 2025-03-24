@@ -76,10 +76,13 @@
                 // Display the server's response inside the iframe
                 const iframe = document.getElementById('outputFrame');
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                iframeDoc.open();
-                iframeDoc.write(html);
-                iframeDoc.close();
-
+                const existingContent = iframeDoc.body.innerHTML;
+                iframeDoc.body.innerHTML = existingContent + html;
+                iframe.contentWindow.scrollTo(0, iframeDoc.body.scrollHeight);
+                iframe.onload = function() {
+                const iframeDoc = iframe.contentWindow.document;
+                iframe.contentWindow.scrollTo(0, iframeDoc.body.scrollHeight);
+                };
                 // Extract and update the path in the label
                 filterIframeContent();
             })
