@@ -42,16 +42,16 @@ echo "$output" >> "$history_file"
 #    echo "" > "$chroot_path/command_history.txt"
 #fi
 # HTML-Ausgabe generieren
-echo "<!DOCTYPE html>"
-echo "<html><head>"
-echo "<meta charset='UTF-8'>"
-echo "<meta charset='UTF-8'></head><body>"
+#echo "<!DOCTYPE html>"
+#echo "<html><head>"
+#echo "<meta charset='UTF-8'>"
+#echo "<meta charset='UTF-8'></head><body>"
 #echo $(cat "$history_file")
 echo "<pre>$output</pre>"
 
 # Display history from the file, simulating a terminal
 
-echo "<pre>"
+#echo "<pre>"
 
 #if [ -f "$history_file" ]; then
 #    tail -n 20 "$history_file"  # Show last 20 lines (you can adjust this number)
@@ -59,5 +59,5 @@ echo "<pre>"
 #    echo "No history available."
 #fi
 
-echo "</pre>"
-echo "</body></html>"
+#echo "</pre>"
+#echo "</body></html>"
