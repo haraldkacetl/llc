@@ -91,7 +91,7 @@ if [[ "$answer" == "y" ]]; then
     touch -p $jpath/jail/home/user/Videos/TopVideo.mp4
     touch -p $jpath/jail/home/user/Videos/TopVideo2.mp4
 
-
+    echo "Finished designing jail environment"
 
 else 
     echo "Skipping directory creation and file copying..."
