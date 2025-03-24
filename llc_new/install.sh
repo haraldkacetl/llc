@@ -54,9 +54,6 @@ if [[ "$answer" == "y" ]]; then
     echo "copying /usr/ to jail/usr/"
     cp -r -p /usr/* $jpath/jail/usr/
     echo "copied /usr/ to jail/usr/"
-    echo "copying /usr/ to jail/usr/"
-    cp -r -p /usr/* $jpath/jail/usr/
-    echo "copied /usr/ to jail/usr/"
 
 else 
     echo "Skipping directory creation and file copying..."
