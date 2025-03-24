@@ -33,7 +33,38 @@
                 inputField.value = '';
             }
         });
-
+        inputField.addEventListener('keydown', async function(event) {
+    if (event.key === 'Tab') {
+        event.preventDefault();
+        let commandParts = inputField.value.split(" ");
+        let lastPart = commandParts[commandParts.length - 1];
+        let varpath = document.getElementById('varpath').innerText;
+        
+        try {
+            let response = await fetch("cgi-bin/tab_files.sh", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ varpath: varpath, prefix: lastPart })
+            });
+            let fileList = await response.text();
+            let files = fileList.split("\n").filter(f => f.trim().length > 0);
+            
+            if (files.length === 1) {
+                // Wenn es genau eine Übereinstimmung gibt, vervollständige das Wort
+                commandParts[commandParts.length - 1] = files[0];
+                inputField.value = commandParts.join(" ") + " ";
+            } else if (files.length > 1) {
+                // Wenn es mehrere gibt, zeige sie an
+                console.log("Mögliche Vervollständigungen:", files);
+                let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                iframeDoc.body.innerHTML += `<div class='command-output'>${files.join(" ")}</div>`;
+                applyIframeStyles();
+            }
+        } catch (error) {
+            console.error("Fehler bei der Tab-Vervollständigung:", error);
+        }
+    }
+});
         function submitCommand() {
             const command = inputField.value.trim();
             const varpath = document.getElementById('varpath').innerText;
@@ -66,7 +97,17 @@
             })
             .catch(error => console.error("Fehler:", error));
         }
-
+        function get_tab_list(){
+            
+            const varpath = document.getElementById('varpath').innerText;
+            fetch("cgi-bin/tab_files.sh", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({varpath: varpath })
+            })
+            .then(response => response.text())
+            return response.text();
+        }
         function filterIframeContent() {
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             const content = iframeDoc.body.innerHTML;
