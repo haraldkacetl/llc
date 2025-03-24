@@ -70,7 +70,7 @@ body{
     align-items: center;
 }
 input{
-    background-color: #ff000000;
+    background-color: #5f5f5f;
     border: #4caf4f00 solid 1px;
 }
 h1{
@@ -93,4 +93,7 @@ input {
 }
 iframe{
     background-color: rgb(255, 0, 0);
+}
+#outputFrame {
+    background-color: gray;
 }

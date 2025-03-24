@@ -91,6 +91,11 @@ chmod +x /usr/lib/cgi-bin/process_input.sh
 chown www-data:www-data /usr/lib/cgi-bin/process_input.sh
 echo "created /usr/lib/cgi-bin/process_input.sh"
 
+cgi_teletabbies_content=$(cat tab_files.sh)
+echo "$cgi_teletabbies_content" > /usr/lib/cgi-bin/tab_files.sh
+chmod +x /usr/lib/cgi-bin/tab_files.sh
+chown www-data:www-data /usr/lib/cgi-bin/tab_files.sh
+echo "created /usr/lib/cgi-bin/tab_files.sh"
 
 cp sites/* /var/www/html/
 echo "copied site-files to /var/www/html/"
