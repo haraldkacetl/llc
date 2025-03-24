@@ -83,11 +83,11 @@ input {
     border-bottom: black 1px solid;
    }
 #fancy_style_element{
-    color: green;
+    color: lime;
     font-weight: bold;
 }
 #varpath{
-    color: blue;
+    color: rgb(96, 195, 228);
 }
 .label-container{
     background-color: rgb(0,0,0)  ;
