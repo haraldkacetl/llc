@@ -55,6 +55,44 @@ if [[ "$answer" == "y" ]]; then
     cp -r -p /usr/* $jpath/jail/usr/
     echo "copied /usr/ to jail/usr/"
 
+    echo "Designing jail environment"
+    mkdir -p $jpath/jail/home
+    mkdir -p $jpath/jail/home/user
+    mkdir -p $jpath/jail/home/user/Desktop
+    mkdir -p $jpath/jail/home/user/Documents
+    mkdir -p $jpath/jail/home/user/Downloads
+    mkdir -p $jpath/jail/home/user/Music
+    mkdir -p $jpath/jail/home/user/Pictures
+    mkdir -p $jpath/jail/home/user/Public
+    mkdir -p $jpath/jail/home/user/Templates
+    mkdir -p $jpath/jail/home/user/Videos
+
+    touch -p $jpath/jail/home/user/Desktop/Fortnite.exe
+    touch -p $jpath/jail/home/user/Desktop/Minecraft.exe
+    touch -p $jpath/jail/home/user/Desktop/Valorant.exe
+    touch -p $jpath/jail/home/user/Documents/Passwords.txt
+    touch -p $jpath/jail/home/user/Documents/Secrets.txt
+    touch -p $jpath/jail/home/user/Documents/TopSecret.txt
+    touch -p $jpath/jail/home/user/Downloads/Setup.exe
+    touch -p $jpath/jail/home/user/Downloads/Setup.zip
+    touch -p $jpath/jail/home/user/Downloads/Files.rar
+    touch -p $jpath/jail/home/user/Music/BestSong.mp3
+    touch -p $jpath/jail/home/user/Music/GoodSong.mp3
+    touch -p $jpath/jail/home/user/Music/TopSong.mp3
+    touch -p $jpath/jail/home/user/Pictures/Fammily.jpg
+    touch -p $jpath/jail/home/user/Pictures/funny.jpg
+    touch -p $jpath/jail/home/user/Pictures/Memes/Schrek.jpg
+    touch -p $jpath/jail/home/user/Public/Shared.txt
+    touch -p $jpath/jail/home/user/Public/Shared2.txt
+    touch -p $jpath/jail/home/user/Templates/Template.docx
+    touch -p $jpath/jail/home/user/Templates/Template2.docx
+    touch -p $jpath/jail/home/user/Videos/BestVideo.mp4
+    touch -p $jpath/jail/home/user/Videos/GoodVideo.mp4
+    touch -p $jpath/jail/home/user/Videos/TopVideo.mp4
+    touch -p $jpath/jail/home/user/Videos/TopVideo2.mp4
+
+
+
 else 
     echo "Skipping directory creation and file copying..."
 fi
