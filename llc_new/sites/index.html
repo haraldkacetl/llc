@@ -8,54 +8,50 @@
 </head>
 <body>
     <h1 id="titlepage">Linux Befehlseingabe</h1>
-    <iframe id="outputFrame" frameborder="2" width="100%" height="700px"><style>body{background-color: rgb(255, 0, 0)  ;}</style></iframe>
-    <div class="label-container">
-        <label for="input_command" id="fancy_style_element">user@linux:</label>
-        <label id="varpath">/</label>
-        <label for="input_command" id="fancy_style_element">$</label>
-    
-        <input type="text" id="input_command" required>
+    <div id="termview">
+        <iframe id="outputFrame" frameborder="0" width="100%" height="700px"></iframe>
+        <div class="label-container">
+            <label for="input_command" id="fancy_style_element">user@linux:</label>
+            <label id="varpath">/</label>
+            <label for="input_command" id="fancy_style_element">$</label>
+            <input type="text" id="input_command" required>
+        </div>
     </div>
     <button onclick="submitCommand()" style="visibility: hidden;">Ausführen</button>
 
     <script>
-        // Get reference to the iframe
         const iframe = document.getElementById('outputFrame');
+        const inputField = document.getElementById('input_command');
 
-        // Add a click event listener to the iframe to focus on the input field inside the iframe
-        iframe.addEventListener('click', function() {
-            const iframeDocument = iframe.contentWindow.document;
-            const inputField = iframeDocument.querySelector('input');
-            if (inputField) {
-                inputField.focus();
-            }
-        });
+        iframe.onload = function () {
+            applyIframeStyles();
+        };
 
-        // Get reference to the main input field outside the iframe
-        const inputField = document.querySelector('input');
-
-        // Add event listener for Enter key
         inputField.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 submitCommand();
-                document.getElementById('input_command').value = '';
+                inputField.value = '';
             }
         });
 
-        // Function to submit the command
         function submitCommand() {
-            const command = document.getElementById('input_command').value;
+            const command = inputField.value.trim();
             const varpath = document.getElementById('varpath').innerText;
-
-            if (!command.trim()) {
+            if (!command) {
                 alert("Bitte einen Befehl eingeben!");
                 return;
             }
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const existingContent = iframeDoc.body.innerHTML;
 
-                // Append new content
-            iframeDoc.body.innerHTML = existingContent + "user@linux:" + varpath + "$ "+ command;
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            if (command === "clear") {
+                iframeDoc.body.innerHTML = '';
+                return;
+            }
+
+            const newEntry = `<div class='command-line'><span id='fancy_style_element'>user@linux:</span>
+                              <span id='varpath'>${varpath}</span><span id='fancy_style_element'>$</span> ${command}</div>`;
+            iframeDoc.body.innerHTML += newEntry;
+
             fetch("cgi-bin/process_input.sh", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -63,61 +59,40 @@
             })
             .then(response => response.text())
             .then(html => {
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                const existingContent = iframeDoc.body.innerHTML;
-
-                // Append new content
-                iframeDoc.body.innerHTML = existingContent + html;
-
-                // Apply text color styling
+                iframeDoc.body.innerHTML += `<div class='command-output'>${html}</div>`;
                 applyIframeStyles();
-
-                // Auto-scroll to the bottom
                 iframe.contentWindow.scrollTo(0, iframeDoc.body.scrollHeight);
-
-                // Update path from response
-
                 filterIframeContent();
             })
             .catch(error => console.error("Fehler:", error));
         }
 
-        // Function to extract and update the path from the iframe content
         function filterIframeContent() {
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            if (iframeDoc) {
-                let content = iframeDoc.body.innerHTML;
-                let pathRegex = /<path>(.*?)<\/path>/s;
-                let match = content.match(pathRegex);
-
-                if (match) {
-                    let extractedPath = match[1].trim();
-                    document.getElementById('varpath').innerText = extractedPath;
-                    iframeDoc.body.innerHTML = content.replace(pathRegex, '');
-                }
+            const content = iframeDoc.body.innerHTML;
+            const match = content.match(/<path>(.*?)<\/path>/s);
+            if (match) {
+                document.getElementById('varpath').innerText = match[1].trim();
+                iframeDoc.body.innerHTML = content.replace(/<path>(.*?)<\/path>/s, '');
             }
         }
 
-        // Function to apply styles to iframe content
         function applyIframeStyles() {
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-            if (iframeDoc) {
-                // Inject style tag if not present
-                let styleTag = iframeDoc.getElementById('customStyles');
-                if (!styleTag) {
-                    styleTag = iframeDoc.createElement("style");
-                    styleTag.id = "customStyles";
-                    iframeDoc.head.appendChild(styleTag);
-                }
-
-                // Set the CSS content
-                styleTag.innerHTML = "body { color: white; background-color: black; font-family: monospace; }";
+            let styleTag = iframeDoc.getElementById('customStyles');
+            if (!styleTag) {
+                styleTag = iframeDoc.createElement("style");
+                styleTag.id = "customStyles";
+                iframeDoc.head.appendChild(styleTag);
             }
+            styleTag.innerHTML = `
+                body { color: white; background-color: black; font-family: monospace; }
+                .command-line { color: green; }
+                .command-output { color: lightgray; }
+                #fancy_style_element { color: cyan; }
+                #varpath { color: blue; }
+            `;
         }
-
-        // Ensure iframe is initialized with correct styles
-        iframe.onload = applyIframeStyles;
     </script>
 </body>
 </html>
