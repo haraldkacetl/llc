@@ -24,8 +24,8 @@ decode_url() {
 varpath=$(echo "$INPUT" | awk -F"&" '{for (i=1; i<=NF; i++) if ($i ~ /^varpath=/) print substr($i,9)}')
 varpath=$(decode_url "$varpath" | tr -d '\r')  # Windows-Zeilenumbrüche entfernen
 
-
-ls_magic="ls | awk '{print "\"" $0 "\""}' | paste -sd, - | sed 's/^/[ /; s/$/ ]/'"
+ls_magic='ls | sed "s/^/\"/; s/$/\"/" | paste -sd, - | sed "s/^/[ /; s/$/ ]/"'
 
 
 output=$(sudo chroot "$chroot_path" /bin/bash -c "$ls_magic" 2>&1)
+echo "$output"
