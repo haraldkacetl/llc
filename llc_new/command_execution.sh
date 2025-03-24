@@ -37,7 +37,7 @@ command_in_jail="cd \"$varpath\" && { $input_command; echo '<path>'; pwd; echo '
 output=$(sudo chroot "$chroot_path" /bin/bash -c "$command_in_jail" 2>&1)
 
 # Append the output to the history file
-echo "$output" >> "$history_file"
+#echo "$output" >> "$history_file"
 #if [[ "s$input_command" != "sclear" ]]; then
 #    echo "" > "$chroot_path/command_history.txt"
 #fi
