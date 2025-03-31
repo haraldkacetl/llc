@@ -169,7 +169,7 @@
  
         function submitCommand() {
  
-            const command = inputField.value.trim();
+            var command = inputField.value.trim();
  
             const varpath = document.getElementById('varpath').innerText;
  
@@ -192,7 +192,11 @@
                 return;
  
             }
- 
+            if (command === "cd") {
+                command = 'cd /';
+
+            }
+            
 
  
             const newEntry = `<div class='command-line'><span id='fancy_style_element'>user@linux:</span>
