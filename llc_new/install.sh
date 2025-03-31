@@ -142,12 +142,18 @@ IP_ADDRESS=$(hostname -I | awk '{print $1}')
 echo "Apache server installed and configured!"
 echo "Visit http://$IP_ADDRESS to access the website."
 
+mkdir -p /var/www/html/content
+cp ./content/* /var/www/html/content/
+echo "copied content files to /var/www/html/content/"
+
+
 mkdir -p /var/www/html/css
 cp ./stylesheets/* /var/www/html/css/
 echo "copied stylesheets to /var/www/html/css/"
 systemctl restart apache2
 
 addsudoline="www-data ALL=(ALL) NOPASSWD: /usr/sbin/chroot"
+
 
 
 if sudo grep -Fxq "$addsudoline" /etc/sudoers; then
