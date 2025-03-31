@@ -1,110 +1,326 @@
-<script>
-    const iframe = document.getElementById('outputFrame');
-    const inputField = document.getElementById('input_command');
+<!DOCTYPE html>
+ 
+<html lang="en">
+ 
+<head>
+ 
+    <meta charset="UTF-8">
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <link rel="stylesheet" href="css/mainstyle.css">
+ 
+    <title>Linux Befehlsaufgaben1</title>
+ 
+</head>
+ 
+<body>
+ 
+    <h1 id="titlepage">Linux Befehlseingabe</h1>
+ 
+    <div id="termview">
+ 
+        <iframe id="outputFrame" frameborder="0" width="100%" height="700px"></iframe>
+ 
+        <div class="label-container">
+ 
+            <label for="input_command" id="fancy_style_element">user@linux:</label>
+ 
+            <label id="varpath">/</label>
+ 
+            <label for="input_command" id="fancy_style_element">$</label>
+ 
+            <input type="text" id="input_command" required>
+ 
+        </div>
+ 
+    </div>
+ 
+    <button onclick="submitCommand()" style="visibility: hidden;">Ausführen</button>
+ 
 
-    iframe.onload = function () {
-        applyIframeStyles();
-    };
+ 
+    <script>
+ 
+        const iframe = document.getElementById('outputFrame');
+ 
+        const inputField = document.getElementById('input_command');
+ 
 
-    inputField.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            submitCommand();
-            inputField.value = '';
-        }
-    });
-
-    inputField.addEventListener('keydown', async function(event) {
-        if (event.key === 'Tab') {
-            event.preventDefault();
-            let commandParts = inputField.value.split(" ");
-            let lastPart = commandParts[commandParts.length - 1];
-            let varpath = document.getElementById('varpath').innerText;
-
-            try {
-                // Hole eine Liste von Dateien und Verzeichnissen für den aktuellen Pfad
-                let response = await fetch("cgi-bin/tab_files.sh", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams({ varpath: varpath, prefix: lastPart })
-                });
-
-                let fileList = await response.text();
-                let files = fileList.split("\n").filter(f => f.trim().length > 0);
-
-                if (files.length === 1) {
-                    // Wenn es genau eine Übereinstimmung gibt, vervollständige das Wort
-                    commandParts[commandParts.length - 1] = files[0];
-                    inputField.value = commandParts.join(" ") + " ";
-                } else if (files.length > 1) {
-                    // Wenn es mehrere gibt, zeige sie an
-                    console.log("Mögliche Vervollständigungen:", files);
-                    let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    iframeDoc.body.innerHTML += `<div class='command-output'>${files.join(" ")}</div>`;
-                    applyIframeStyles();
-                }
-            } catch (error) {
-                console.error("Fehler bei der Tab-Vervollständigung:", error);
-            }
-        }
-    });
-
-    function submitCommand() {
-        const command = inputField.value.trim();
-        const varpath = document.getElementById('varpath').innerText;
-        if (!command) {
-            alert("Bitte einen Befehl eingeben!");
-            return;
-        }
-
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (command === "clear") {
-            iframeDoc.body.innerHTML = '';
-            return;
-        }
-
-        const newEntry = `<div class='command-line'><span id='fancy_style_element'>user@linux:</span>
-                          <span id='varpath'>${varpath}</span><span id='fancy_style_element'>$</span> ${command}</div>`;
-        iframeDoc.body.innerHTML += newEntry;
-
-        fetch("cgi-bin/process_input.sh", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({ input_command: command, varpath: varpath })
-        })
-        .then(response => response.text())
-        .then(html => {
-            iframeDoc.body.innerHTML += `<div class='command-output'>${html}</div>`;
+ 
+        iframe.onload = function () {
+ 
             applyIframeStyles();
-            iframe.contentWindow.scrollTo(0, iframeDoc.body.scrollHeight);
-            filterIframeContent();
-        })
-        .catch(error => console.error("Fehler:", error));
-    }
+ 
+        };
+ 
 
-    function filterIframeContent() {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        const content = iframeDoc.body.innerHTML;
-        const match = content.match(/<path>(.*?)<\/path>/s);
-        if (match) {
-            document.getElementById('varpath').innerText = match[1].trim();
-            iframeDoc.body.innerHTML = content.replace(/<path>(.*?)<\/path>/s, '');
-        }
-    }
+ 
+        inputField.addEventListener('keydown', function(event) {
+ 
+            if (event.key === 'Enter') {
+ 
+                submitCommand();
+ 
+                inputField.value = '';
+ 
+            }
+ 
+        });
+ 
 
-    function applyIframeStyles() {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        let styleTag = iframeDoc.getElementById('customStyles');
-        if (!styleTag) {
-            styleTag = iframeDoc.createElement("style");
-            styleTag.id = "customStyles";
-            iframeDoc.head.appendChild(styleTag);
+
+ 
+
+        inputField.addEventListener('keydown', async function(event) {
+ 
+
+    if (event.key === 'Tab') {
+ 
+
+        event.preventDefault();
+ 
+
+        let commandParts = inputField.value.split(" ");
+ 
+
+        let lastPart = commandParts[commandParts.length - 1];
+ 
+
+        let varpath = document.getElementById('varpath').innerText;
+ 
+
+        
+ 
+
+        try {
+ 
+
+            let response = await fetch("cgi-bin/tab_files.sh", {
+ 
+
+                method: "POST",
+ 
+
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+ 
+
+                body: new URLSearchParams({ varpath: varpath, prefix: lastPart })
+ 
+
+            });
+ 
+
+            let fileList = await response.text();
+ 
+
+            let files = fileList.split("\n").filter(f => f.trim().length > 0);
+ 
+
+            
+ 
+
+            if (files.length === 1) {
+ 
+
+                // Wenn es genau eine Übereinstimmung gibt, vervollständige das Wort
+ 
+
+                commandParts[commandParts.length - 1] = files[0];
+ 
+
+                inputField.value = commandParts.join(" ") + " ";
+ 
+
+            } else if (files.length > 1) {
+ 
+
+                // Wenn es mehrere gibt, zeige sie an
+ 
+
+                console.log("Mögliche Vervollständigungen:", files);
+ 
+
+                let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+ 
+
+                iframeDoc.body.innerHTML += `<div class='command-output'>${files.join(" ")}</div>`;
+ 
+
+                applyIframeStyles();
+ 
+
+            }
+ 
+
+        } catch (error) {
+ 
+
+            console.error("Fehler bei der Tab-Vervollständigung:", error);
+ 
+
         }
-        styleTag.innerHTML = `
-            body { color: white; background-color: black; font-family: monospace; }
-            .command-line { color: white; }
-            .command-output { color: lightgray; }
-            #fancy_style_element { color: lime; }
-            #varpath { color: rgb(96, 195, 228); }
-        `;
+ 
+
     }
-</script>
+ 
+
+});
+ 
+        function submitCommand() {
+ 
+            const command = inputField.value.trim();
+ 
+            const varpath = document.getElementById('varpath').innerText;
+ 
+            if (!command) {
+ 
+                alert("Bitte einen Befehl eingeben!");
+ 
+                return;
+ 
+            }
+ 
+
+ 
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+ 
+            if (command === "clear") {
+ 
+                iframeDoc.body.innerHTML = '';
+ 
+                return;
+ 
+            }
+ 
+
+ 
+            const newEntry = `<div class='command-line'><span id='fancy_style_element'>user@linux:</span>
+ 
+                              <span id='varpath'>${varpath}</span><span id='fancy_style_element'>$</span> ${command}</div>`;
+ 
+            iframeDoc.body.innerHTML += newEntry;
+ 
+
+ 
+            fetch("cgi-bin/process_input.sh", {
+ 
+                method: "POST",
+ 
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+ 
+                body: new URLSearchParams({ input_command: command, varpath: varpath })
+ 
+            })
+ 
+            .then(response => response.text())
+ 
+            .then(html => {
+ 
+                iframeDoc.body.innerHTML += `<div class='command-output'>${html}</div>`;
+ 
+                applyIframeStyles();
+ 
+                iframe.contentWindow.scrollTo(0, iframeDoc.body.scrollHeight);
+ 
+                filterIframeContent();
+ 
+            })
+ 
+            .catch(error => console.error("Fehler:", error));
+ 
+        }
+ 
+
+
+ 
+
+        function get_tab_list(){
+ 
+
+            
+ 
+
+            const varpath = document.getElementById('varpath').innerText;
+ 
+
+            fetch("cgi-bin/tab_files.sh", {
+ 
+
+                method: "POST",
+ 
+
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+ 
+
+                body: new URLSearchParams({varpath: varpath })
+ 
+
+            })
+ 
+
+            .then(response => response.text())
+ 
+
+            return response.text();
+ 
+
+        }
+ 
+        function filterIframeContent() {
+ 
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+ 
+            const content = iframeDoc.body.innerHTML;
+ 
+            const match = content.match(/<path>(.*?)<\/path>/s);
+ 
+            if (match) {
+ 
+                document.getElementById('varpath').innerText = match[1].trim();
+ 
+                iframeDoc.body.innerHTML = content.replace(/<path>(.*?)<\/path>/s, '');
+ 
+            }
+ 
+        }
+ 
+
+ 
+        function applyIframeStyles() {
+ 
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+ 
+            let styleTag = iframeDoc.getElementById('customStyles');
+ 
+            if (!styleTag) {
+ 
+                styleTag = iframeDoc.createElement("style");
+ 
+                styleTag.id = "customStyles";
+ 
+                iframeDoc.head.appendChild(styleTag);
+ 
+            }
+ 
+            styleTag.innerHTML = `
+ 
+                body { color: white; background-color: black; font-family: monospace; }
+ 
+                .command-line { color: white; }
+ 
+                .command-output { color: lightgray; }
+ 
+                #fancy_style_element { color: lime; }
+ 
+                #varpath { color: rgb(96, 195, 228); }
+ 
+
+ 
+            `;
+ 
+        }
+ 
+    </script>
+ 
+</body>
